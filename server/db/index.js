@@ -15,7 +15,7 @@ const syncAndSeed = async()=> {
   ]);
 
   await Promise.all([
-    Sticky.create({ title: 'Moe Writes A Sticky', text: 'Just trying this out! So fun.', userId: moe.id}),
+    Sticky.create({ title: 'Moe Writes A Sticky', text: 'Just trying this out! So fun.', userId: moe.id,isPublic: true}),
     Sticky.create({ title: 'Groceries', text: 'Milk, eggs, broccoli, cheese, tortillas, toilet paper', userId: moe.id})
   ])
 

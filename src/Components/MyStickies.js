@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../store';
 
 const MyStickies = ()=> {
-  const { auth, stickies } = useSelector(state => state);
+  const { auth, myStickies } = useSelector(state => state);
   const dispatch = useDispatch();
   return (
     <div>
@@ -11,7 +11,7 @@ const MyStickies = ()=> {
       <h2>{auth.username}</h2>
       <ul>
       {
-        stickies.map(sticky => {
+        myStickies.map(sticky => {
           return (
             <li key={sticky.id}>{sticky.title}</li>
           )

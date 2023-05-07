@@ -5,7 +5,22 @@ const { isLoggedIn } = require('./middleware');
 
 module.exports = app;
 
-app.get('/', isLoggedIn, async(req, res, next)=> {
+//get all public stickies
+app.get('/', async(req, res, next) => {
+  try {
+    res.send(await Sticky.findAll({
+      where: {
+        isPublic: true
+      }
+    }))
+  }
+  catch(ex) {
+    next(ex)
+  }
+})
+
+//get the logged-in user's stickies
+app.get('/user', isLoggedIn, async(req, res, next)=> {
   try {
     res.send(await Sticky.findAll({
       where: {
