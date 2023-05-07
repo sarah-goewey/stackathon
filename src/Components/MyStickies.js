@@ -13,7 +13,12 @@ const MyStickies = ()=> {
       {
         myStickies.map(sticky => {
           return (
-            <li key={sticky.id}>{sticky.title}</li>
+            <li key={sticky.id}>
+              {sticky.title}
+              <br/>
+              <hr/>
+              {sticky.text}
+            </li>
           )
         })
       }
