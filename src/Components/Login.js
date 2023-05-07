@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
 import Feed from './Feed';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const Login = ()=> {
   const dispatch = useDispatch();
@@ -20,21 +22,21 @@ const Login = ()=> {
   };
   return (
     <div>
-      <h2>login</h2>
       <form onSubmit={ login }>
-        <input
+        <h2>login</h2>
+        <TextField
           placeholder='username'
           value = { credentials.username }
           name = 'username'
           onChange = { onChange }
           />
-        <input
+        <TextField
           placeholder='password'
           name = 'password'
           value={ credentials.password }
           onChange = { onChange }
         />
-        <button>login</button>
+        <Button color = 'secondary' onClick={login}>login</Button>
       </form>
       < Feed />
     </div>
