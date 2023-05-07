@@ -1,5 +1,9 @@
 const conn = require('./conn');
 const User = require('./User');
+const Sticky = require('./Sticky');
+
+Sticky.belongsTo(User)
+User.hasMany(Sticky)
 
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
@@ -9,6 +13,11 @@ const syncAndSeed = async()=> {
     User.create({ username: 'larry', password: '123' }),
     User.create({ username: 'ethyl', password: '123' }),
   ]);
+
+  await Promise.all([
+    Sticky.create({ title: 'Moe Writes A Sticky', text: 'Just trying this out! So fun.', userId: moe.id}),
+    Sticky.create({ title: 'Groceries', text: 'Milk, eggs, broccoli, cheese, tortillas, toilet paper', userId: moe.id})
+  ])
 
   return {
     users: {
@@ -23,4 +32,5 @@ const syncAndSeed = async()=> {
 module.exports = {
   syncAndSeed,
   User,
+  Sticky
 };
