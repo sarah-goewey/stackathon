@@ -20,12 +20,12 @@ const Sticky = conn.define('sticky', {
     type: TEXT
   },
   color: {
-    type: ENUM ('yellow', 'pink', 'blue', 'green', 'purple', 'grey'),
+    type: ENUM ('gold', 'pink', 'dodgerBlue', 'seagreen', 'mediumpurple', 'silver'),
     allowNull: false,
-    defaultValue: 'yellow'
+    defaultValue: 'gold'
   },
   font: {
-    type: ENUM ('verdana', 'monospace', 'times', 'handwriting'),
+    type: ENUM ('verdana', 'arial', 'times new roman', 'fantasy'),
     allowNull: false,
     defaultValue: 'verdana'
   },

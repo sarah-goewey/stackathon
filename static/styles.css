@@ -1,5 +1,6 @@
+/*basics*/
 body {
-  font-family: verdana;
+  font-family: monospace
 }
 
 form {
@@ -11,7 +12,24 @@ form > * {
   margin: 1rem;
 }
 
-nav {
+h1 {
+  font-size: 3rem;
+}
+
+.nav {
   display: flex;
   justify-content: space-around;
+  background-color: black;
+}
+
+.nav > a {
+  color: white;
+  font-size: 1.25rem;
+}
+
+/*sticky feed*/
+ul.stickyFeed{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

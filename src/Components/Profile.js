@@ -7,8 +7,7 @@ const Profile = ()=> {
   const dispatch = useDispatch();
   return (
     <div>
-      <h1>My Profile</h1>
-      <h2>{auth.username}</h2>
+      <h2>{auth.username}'s profile</h2>
     </div>
   );
 };

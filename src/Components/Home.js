@@ -8,10 +8,10 @@ const Home = ()=> {
   const dispatch = useDispatch();
   return (
     <div>
-      <h1>Home</h1>
+      <h2>home</h2>
       <div>
-        Welcome { auth.username }!!
-        <button onClick={()=> dispatch(logout())}>Logout</button>
+        welcome { auth.username }!!
+        <button onClick={()=> dispatch(logout())}>logout</button>
       </div>
       < Feed />
     </div>

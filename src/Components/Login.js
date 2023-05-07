@@ -20,7 +20,7 @@ const Login = ()=> {
   };
   return (
     <div>
-      <h2>Login</h2>
+      <h2>login</h2>
       <form onSubmit={ login }>
         <input
           placeholder='username'
@@ -34,7 +34,7 @@ const Login = ()=> {
           value={ credentials.password }
           onChange = { onChange }
         />
-        <button>Login</button>
+        <button>login</button>
       </form>
       < Feed />
     </div>

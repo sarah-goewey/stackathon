@@ -25,16 +25,16 @@ const syncAndSeed = async()=> {
 
   await Promise.all([
     titles().map(title => {
-      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: moe.id})
+      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: moe.id, color: 'seagreen'})
     }),
     titles().map(title => {
-      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: lucy.id})
+      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: lucy.id, font: 'fantasy'})
     }),
     titles().map(title => {
-      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: larry.id})
+      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: larry.id, color: 'pink', font: 'arial'})
     }),
     titles().map(title => {
-      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: ethyl.id})
+      Sticky.create({title, text: faker.lorem.paragraph(3), isPublic: true, userId: ethyl.id, color: 'dodgerBlue', font: 'times new roman'})
     })
   ])
 

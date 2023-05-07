@@ -6,7 +6,8 @@ import Profile from './Profile';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken, fetchMyStickies, fetchAllStickies } from '../store';
 import { Link, Routes, Route } from 'react-router-dom';
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
 const App = ()=> {
   const { auth } = useSelector(state => state);
@@ -34,18 +35,20 @@ const App = ()=> {
 
   return (
     <div>
-      <h1>Spiffy Stickies</h1>
+      <h1>spiffy_stickies</h1>
       {
         !auth.id && <Login />
       }
       {
         !!auth.id  && (
           <div>
-            <nav>
-              <Link to='/'>Home</Link>
-              <Link to ='/mystickies'>My Stickies</Link>
-              <Link to = '/profile'>My Profile</Link>
-            </nav>
+            <AppBar position='sticky'>
+              <Toolbar className = 'nav'>
+                <Link to='/'>home</Link>
+                <Link to ='/mystickies'>my stickies</Link>
+                <Link to = '/profile'>my profile</Link>
+              </Toolbar>
+            </AppBar>
             <Routes>
               <Route path = '/' element = {<Home />} />
               <Route path = '/login' element = {<Login />} />
