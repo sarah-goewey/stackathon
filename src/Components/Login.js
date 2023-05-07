@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
+import Feed from './Feed';
 
 const Login = ()=> {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Login = ()=> {
         />
         <button>Login</button>
       </form>
+      < Feed />
     </div>
   );
 };
