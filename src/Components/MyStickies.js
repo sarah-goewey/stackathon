@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createSticky, destroySticky } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { Link } from "react-router-dom";
 
 const MyStickies = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -88,7 +89,7 @@ const MyStickies = () => {
               style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}
             >
               <CardContent>
-                {sticky.title}
+                <Link to={`/stickies/${sticky.id}`}>{sticky.title}</Link>
                 <br />
                 {sticky.text}
                 <br />
