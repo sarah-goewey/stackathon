@@ -1,20 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import auth from './auth';
-import myStickies from './mystickies';
-import allStickies from './allstickies';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import auth from "./auth";
+import stickies from "./stickies";
 
 const reducer = combineReducers({
   auth,
-  myStickies,
-  allStickies
+  stickies,
 });
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 
 export default store;
 
-export * from './auth';
-export * from './mystickies';
-export * from './allstickies';
+export * from "./auth";
+export * from "./stickies";

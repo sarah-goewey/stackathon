@@ -4,7 +4,7 @@ import Login from "./Login";
 import MyStickies from "./MyStickies";
 import Profile from "./Profile";
 import { useSelector, useDispatch } from "react-redux";
-import { loginWithToken, fetchMyStickies, fetchAllStickies } from "../store";
+import { loginWithToken, fetchStickies } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,13 +16,12 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loginWithToken());
-    dispatch(fetchAllStickies());
+    dispatch(fetchStickies());
   }, []);
 
   useEffect(() => {
     if (!prevAuth.current.id && auth.id) {
       console.log("logged in");
-      dispatch(fetchMyStickies());
     }
     if (!prevAuth.current.id && !auth.id) {
       console.log("logged out");

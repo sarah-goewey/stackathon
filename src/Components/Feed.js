@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllStickies } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const Feed = () => {
-  const { auth, allStickies } = useSelector((state) => state);
+  const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const feed = stickies.filter((sticky) => !!sticky.isPublic);
 
   return (
     <ul className="stickyFeed">
-      {allStickies.map((sticky, idx) => {
+      {feed.map((sticky, idx) => {
         return (
           <Card
             sx={{ maxWidth: 345 }}

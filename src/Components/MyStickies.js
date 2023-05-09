@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToAllStickies, createSticky } from "../store";
+import { createSticky } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const MyStickies = () => {
-  const { auth, myStickies } = useSelector((state) => state);
+  const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const myStickies = stickies.filter((sticky) => sticky.userId === auth.id);
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -19,7 +21,6 @@ const MyStickies = () => {
     try {
       const sticky = { title, text, color, font, isPublic, userId: auth.id };
       await dispatch(createSticky(sticky));
-      await dispatch(addToAllStickies(sticky));
       setTitle("");
       setText("");
       setColor("gold");

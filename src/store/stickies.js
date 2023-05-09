@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const myStickies = (state = [], action) => {
-  if (action.type === "SET_MY_STICKIES") {
+const stickies = (state = [], action) => {
+  if (action.type === "SET_ALL_STICKIES") {
     return action.stickies;
   }
   if (action.type === "ADD_STICKY") {
@@ -10,15 +10,10 @@ const myStickies = (state = [], action) => {
   return state;
 };
 
-export const fetchMyStickies = () => {
+export const fetchStickies = () => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
-    const response = await axios.get("api/stickies/user", {
-      headers: {
-        authorization: token,
-      },
-    });
-    dispatch({ type: "SET_MY_STICKIES", stickies: response.data });
+    const response = await axios.get("api/stickies/");
+    dispatch({ type: "SET_ALL_STICKIES", stickies: response.data });
   };
 };
 
@@ -34,4 +29,4 @@ export const createSticky = (sticky) => {
   };
 };
 
-export default myStickies;
+export default stickies;
