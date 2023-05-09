@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createSticky } from "../store";
+import { createSticky, destroySticky } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
@@ -29,6 +29,10 @@ const MyStickies = () => {
     } catch (ex) {
       console.log(ex);
     }
+  };
+
+  const destroy = (sticky) => {
+    dispatch(destroySticky(sticky));
   };
 
   return (
@@ -87,6 +91,8 @@ const MyStickies = () => {
                 {sticky.title}
                 <br />
                 {sticky.text}
+                <br />
+                <button onClick={() => destroy(sticky)}>delete</button>
               </CardContent>
             </Card>
           );

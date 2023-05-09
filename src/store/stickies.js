@@ -7,6 +7,9 @@ const stickies = (state = [], action) => {
   if (action.type === "ADD_STICKY") {
     return [...state, action.sticky];
   }
+  if (action.type === "DESTROY_STICKY") {
+    return state.filter((s) => s.id !== action.sticky.id);
+  }
   return state;
 };
 
@@ -26,6 +29,13 @@ export const createSticky = (sticky) => {
       },
     });
     dispatch({ type: "ADD_STICKY", sticky: response.data });
+  };
+};
+
+export const destroySticky = (sticky) => {
+  return async (dispatch) => {
+    await axios.delete(`api/stickies/${sticky.id}`);
+    dispatch({ type: "DESTROY_STICKY", sticky });
   };
 };
 

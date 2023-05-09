@@ -23,3 +23,14 @@ app.post("/", isLoggedIn, async (req, res, next) => {
     next(ex);
   }
 });
+
+//destroy a sticky
+app.delete("/:id", async (req, res, next) => {
+  try {
+    const sticky = await Sticky.findByPk(req.params.id);
+    await sticky.destroy();
+    res.sendStatus(204);
+  } catch (ex) {
+    next(ex);
+  }
+});
