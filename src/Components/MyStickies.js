@@ -1,15 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store";
+import { addToAllStickies, createSticky } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const MyStickies = () => {
   const { auth, myStickies } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [color, setColor] = useState("gold");
+  const [font, setFont] = useState("verdana");
+  const [isPublic, setIsPublic] = useState(false);
+
+  const create = async (ev) => {
+    ev.preventDefault();
+    try {
+      const sticky = { title, text, color, font, isPublic, userId: auth.id };
+      await dispatch(createSticky(sticky));
+      await dispatch(addToAllStickies(sticky));
+      setTitle("");
+      setText("");
+      setColor("gold");
+      setFont("verdana");
+      setIsPublic(false);
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
   return (
     <div>
       <h2>{auth.username}'s stickies</h2>
+      <form onSubmit={create}>
+        <h3>create a new sticky</h3>
+        <label>
+          enter title
+          <input value={title} onChange={(ev) => setTitle(ev.target.value)} />
+        </label>
+        <label>
+          enter text
+          <textarea value={text} onChange={(ev) => setText(ev.target.value)} />
+        </label>
+        <label>
+          select color
+          <select value={color} onChange={(ev) => setColor(ev.target.value)}>
+            <option value="gold">gold</option>
+            <option value="pink">pink</option>
+            <option value="dodgerBlue">blue</option>
+            <option value="seagreen">green</option>
+            <option value="mediumpurple">purple</option>
+            <option value="silver">silver</option>
+          </select>
+        </label>
+        <label>
+          select font
+          <select value={font} onChange={(ev) => setFont(ev.target.value)}>
+            <option value="verdana">verdana</option>
+            <option value="arial">arial</option>
+            <option value="times new roman">times new roman</option>
+            <option value="fantasy">fantasy</option>
+          </select>
+        </label>
+        <label>
+          public?
+          <input
+            type="checkbox"
+            value={isPublic}
+            onClick={(ev) => setIsPublic(!isPublic)}
+          />
+        </label>
+        <button>create sticky</button>
+      </form>
       <ul className="stickyFeed">
         {myStickies.map((sticky) => {
           return (
