@@ -9,7 +9,17 @@ const MyStickies = () => {
   const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const myStickies = stickies.filter((sticky) => sticky.userId === auth.id);
+  const myStickies = stickies
+    .filter((sticky) => sticky.userId === auth.id)
+    .sort((a, b) => {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    });
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
@@ -90,6 +100,7 @@ const MyStickies = () => {
             >
               <CardContent>
                 <Link to={`/stickies/${sticky.id}`}>{sticky.title}</Link>
+                <hr />
                 <br />
                 {sticky.text}
                 <br />

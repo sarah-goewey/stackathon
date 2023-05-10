@@ -7,7 +7,17 @@ const Feed = () => {
   const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const feed = stickies.filter((sticky) => !!sticky.isPublic);
+  const feed = stickies
+    .filter((sticky) => !!sticky.isPublic)
+    .sort((a, b) => {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    });
 
   return (
     <ul className="stickyFeed">
@@ -21,6 +31,7 @@ const Feed = () => {
           >
             <CardContent>
               {sticky.title}
+              <hr />
               <br />
               {sticky.text}
             </CardContent>
