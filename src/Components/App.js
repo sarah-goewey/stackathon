@@ -13,7 +13,7 @@ import Toolbar from "@mui/material/Toolbar";
 const App = () => {
   const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const prevAuth = useRef({});
+  const prevAuth = useRef(auth);
 
   useEffect(() => {
     dispatch(loginWithToken());
@@ -24,7 +24,7 @@ const App = () => {
     if (!prevAuth.current.id && auth.id) {
       console.log("logged in");
     }
-    if (!prevAuth.current.id && !auth.id) {
+    if (prevAuth.current.id && !auth.id) {
       console.log("logged out");
     }
   }, [auth]);
