@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import emoji from "node-emoji";
+import Sticky from "./Sticky";
 
 const Feed = () => {
   const { stickies } = useSelector((state) => state);
@@ -24,20 +22,16 @@ const Feed = () => {
     <ul className="stickyFeed">
       {feed.map((sticky, idx) => {
         return (
-          <Card
-            sx={{ width: 345, minHeight: 345, margin: "5px" }}
+          <Sticky
             key={sticky.id || idx}
-            variant="outlined"
-            style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}
-          >
-            <CardContent>
-              {sticky.title}
-              {!!sticky.emojiString && emoji.get(sticky.emojiString)}
-              <hr />
-              <br />
-              {sticky.text}
-            </CardContent>
-          </Card>
+            id={sticky.id}
+            title={sticky.title}
+            text={sticky.text}
+            emojiString={sticky.emojiString}
+            color={sticky.color}
+            font={sticky.font}
+            isPublic={sticky.isPublic}
+          />
         );
       })}
     </ul>

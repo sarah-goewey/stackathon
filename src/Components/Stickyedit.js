@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateSticky, destroySticky } from "../store";
-import emoji from "node-emoji";
+import Sticky from "./Sticky";
 
 const StickyEdit = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -62,7 +60,7 @@ const StickyEdit = () => {
 
   return (
     <div>
-      <form onSubmit={update}>
+      <form>
         <h2>edit sticky</h2>
         <label>
           change title
@@ -108,24 +106,18 @@ const StickyEdit = () => {
             onChange={(ev) => setIsPublic(!isPublic)}
           />
         </label>
-        <button>update sticky</button>
+        <button onClick={update}>update sticky</button>
         <button onClick={reset}>reset</button>
       </form>
-      <Card
-        sx={{ width: 345, minHeight: 345 }}
-        variant="outlined"
-        style={{ backgroundColor: color, fontFamily: font }}
-      >
-        <CardContent>
-          {title}
-          {emojiString && emoji.get(emojiString)}
-          <hr />
-          <br />
-          {text}
-          <br />
-          <button onClick={() => destroy(sticky)}>delete</button>
-        </CardContent>
-      </Card>
+      <Sticky
+        title={title}
+        text={text}
+        emojiString={emojiString}
+        color={color}
+        font={font}
+        isPublic={isPublic}
+      />
+      <button onClick={() => destroy(sticky)}>x</button>
     </div>
   );
 };

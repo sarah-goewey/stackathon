@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSticky, destroySticky } from "../store";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { Link } from "react-router-dom";
-import emoji from "node-emoji";
+import Sticky from "./Sticky";
 
 const MyStickies = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -60,20 +57,14 @@ const MyStickies = () => {
   return (
     <div>
       <h2>{auth.username}'s stickies</h2>
-      <Card
-        sx={{ width: 345, minHeight: 345, margin: "5px" }}
-        variant="outlined"
-        style={{ backgroundColor: color, fontFamily: font }}
-      >
-        <CardContent>
-          {title}
-          {emojiString && emoji.get(emojiString)}
-          <hr />
-          <br />
-          {text}
-          <br />
-        </CardContent>
-      </Card>
+      <Sticky
+        title={title}
+        text={text}
+        emojiString={emojiString}
+        color={color}
+        font={font}
+        isPublic={isPublic}
+      />
       <form onSubmit={create}>
         <h3>create a new sticky</h3>
         <label>
@@ -122,24 +113,21 @@ const MyStickies = () => {
         <button>create sticky</button>
       </form>
       <ul className="stickyFeed">
-        {myStickies.map((sticky) => {
+        {myStickies.map((sticky, idx) => {
           return (
-            <Card
-              sx={{ width: 345, minHeight: 345, margin: "5px" }}
-              key={sticky.id}
-              variant="outlined"
-              style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}
-            >
-              <CardContent>
-                <Link to={`/stickies/${sticky.id}`}>{sticky.title}</Link>
-                {!!sticky.emojiString && emoji.get(sticky.emojiString)}
-                <hr />
-                <br />
-                {sticky.text}
-                <br />
-                <button onClick={() => destroy(sticky)}>delete</button>
-              </CardContent>
-            </Card>
+            <div key={sticky.id || idx}>
+              <Sticky
+                id={sticky.id}
+                title={sticky.title}
+                text={sticky.text}
+                emojiString={sticky.emojiString}
+                color={sticky.color}
+                font={sticky.font}
+                isPublic={sticky.isPublic}
+                wantLink={true}
+              />
+              <button onClick={() => destroy(sticky)}>x</button>
+            </div>
           );
         })}
       </ul>
