@@ -22,9 +22,9 @@ const MyStickies = () => {
       return 0;
     });
 
-  const [title, setTitle] = useState("title");
+  const [title, setTitle] = useState("title goes here");
   const [emojiString, setEmojiString] = useState("");
-  const [text, setText] = useState("text");
+  const [text, setText] = useState("text goes here");
   const [color, setColor] = useState("gold");
   const [font, setFont] = useState("verdana");
   const [isPublic, setIsPublic] = useState(false);
@@ -42,9 +42,9 @@ const MyStickies = () => {
         emojiString,
       };
       await dispatch(createSticky(sticky));
-      setTitle("title");
+      setTitle("title goes here");
       setEmojiString("");
-      setText("text");
+      setText("text goes here");
       setColor("gold");
       setFont("verdana");
       setIsPublic(false);
@@ -61,7 +61,7 @@ const MyStickies = () => {
     <div>
       <h2>{auth.username}'s stickies</h2>
       <Card
-        sx={{ maxWidth: 345 }}
+        sx={{ width: 345 }}
         variant="outlined"
         style={{ backgroundColor: color, fontFamily: font }}
       >
@@ -125,7 +125,7 @@ const MyStickies = () => {
         {myStickies.map((sticky) => {
           return (
             <Card
-              sx={{ maxWidth: 345 }}
+              sx={{ width: 345 }}
               key={sticky.id}
               variant="outlined"
               style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}

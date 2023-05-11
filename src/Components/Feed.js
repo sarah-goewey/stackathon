@@ -24,7 +24,7 @@ const Feed = () => {
       {feed.map((sticky, idx) => {
         return (
           <Card
-            sx={{ maxWidth: 345 }}
+            sx={{ width: 345 }}
             key={sticky.id || idx}
             variant="outlined"
             style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}

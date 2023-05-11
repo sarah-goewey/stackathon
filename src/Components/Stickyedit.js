@@ -45,6 +45,15 @@ const StickyEdit = () => {
     dispatch(destroySticky(sticky));
   };
 
+  const reset = () => {
+    setTitle(sticky.title);
+    setEmojiString(sticky.emojiString);
+    setText(sticky.text);
+    setColor(sticky.color);
+    setFont(sticky.font);
+    setIsPublic(!!sticky.isPublic ? true : false);
+  };
+
   if (!sticky) {
     return null;
   }
@@ -98,19 +107,19 @@ const StickyEdit = () => {
           />
         </label>
         <button>update sticky</button>
+        <button onClick={reset}>reset</button>
       </form>
       <Card
-        sx={{ maxWidth: 345 }}
-        key={sticky.id}
+        sx={{ width: 345 }}
         variant="outlined"
-        style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}
+        style={{ backgroundColor: color, fontFamily: font }}
       >
         <CardContent>
-          {sticky.title}
+          {title}
           {emojiString && emoji.get(emojiString)}
           <hr />
           <br />
-          {sticky.text}
+          {text}
           <br />
           <button onClick={() => destroy(sticky)}>delete</button>
         </CardContent>
