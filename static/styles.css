@@ -12,7 +12,8 @@ form > * {
   width: 50%;
 }
 
-form > h2 {
+form > h2,
+form > h3 {
   text-align: right;
 }
 
@@ -47,4 +48,19 @@ ul.stickyFeed {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+ul.myStickies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stickyAndButton {
+  display: flex;
+}
+
+.stickyAndButton > button {
+  width: 25px;
+  height: 25px;
 }

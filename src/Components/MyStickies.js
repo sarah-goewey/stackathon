@@ -112,10 +112,10 @@ const MyStickies = () => {
         </label>
         <button>create sticky</button>
       </form>
-      <ul className="stickyFeed">
+      <ul className="myStickies">
         {myStickies.map((sticky, idx) => {
           return (
-            <div key={sticky.id || idx}>
+            <div className="stickyAndButton" key={sticky.id || idx}>
               <Sticky
                 id={sticky.id}
                 title={sticky.title}

@@ -109,15 +109,17 @@ const StickyEdit = () => {
         <button onClick={update}>update sticky</button>
         <button onClick={reset}>reset</button>
       </form>
-      <Sticky
-        title={title}
-        text={text}
-        emojiString={emojiString}
-        color={color}
-        font={font}
-        isPublic={isPublic}
-      />
-      <button onClick={() => destroy(sticky)}>x</button>
+      <div className="stickyAndButton">
+        <Sticky
+          title={title}
+          text={text}
+          emojiString={emojiString}
+          color={color}
+          font={font}
+          isPublic={isPublic}
+        />
+        <button onClick={() => destroy(sticky)}>x</button>
+      </div>
     </div>
   );
 };
