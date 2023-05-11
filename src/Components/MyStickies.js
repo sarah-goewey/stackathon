@@ -61,7 +61,7 @@ const MyStickies = () => {
     <div>
       <h2>{auth.username}'s stickies</h2>
       <Card
-        sx={{ width: 345 }}
+        sx={{ width: 345, minHeight: 345, margin: "5px" }}
         variant="outlined"
         style={{ backgroundColor: color, fontFamily: font }}
       >
@@ -125,7 +125,7 @@ const MyStickies = () => {
         {myStickies.map((sticky) => {
           return (
             <Card
-              sx={{ width: 345 }}
+              sx={{ width: 345, minHeight: 345, margin: "5px" }}
               key={sticky.id}
               variant="outlined"
               style={{ backgroundColor: sticky.color, fontFamily: sticky.font }}

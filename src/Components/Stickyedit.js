@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { updateSticky, destroySticky } from "../store";
 import emoji from "node-emoji";
 
 const StickyEdit = () => {
   const { auth, stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const sticky = stickies.find((sticky) => sticky.id === id);
 
@@ -43,6 +44,7 @@ const StickyEdit = () => {
 
   const destroy = (sticky) => {
     dispatch(destroySticky(sticky));
+    navigate("/mystickies");
   };
 
   const reset = () => {
@@ -110,7 +112,7 @@ const StickyEdit = () => {
         <button onClick={reset}>reset</button>
       </form>
       <Card
-        sx={{ width: 345 }}
+        sx={{ width: 345, minHeight: 345 }}
         variant="outlined"
         style={{ backgroundColor: color, fontFamily: font }}
       >

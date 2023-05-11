@@ -1,6 +1,5 @@
-
 body {
-  font-family: monospace
+  font-family: monospace;
 }
 
 form {
@@ -18,7 +17,7 @@ form > h2 {
 }
 
 Button {
-  width: 6rem; 
+  width: 6rem;
 }
 
 form > * {
@@ -44,7 +43,7 @@ h1 {
   background-color: red;
 }
 
-ul.stickyFeed{
+ul.stickyFeed {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
