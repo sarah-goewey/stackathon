@@ -4,6 +4,7 @@ import { createSticky, destroySticky } from "../store";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
+import emoji from "node-emoji";
 
 const MyStickies = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -21,8 +22,9 @@ const MyStickies = () => {
       return 0;
     });
 
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("title");
+  const [emojiString, setEmojiString] = useState("");
+  const [text, setText] = useState("text");
   const [color, setColor] = useState("gold");
   const [font, setFont] = useState("verdana");
   const [isPublic, setIsPublic] = useState(false);
@@ -30,10 +32,19 @@ const MyStickies = () => {
   const create = async (ev) => {
     ev.preventDefault();
     try {
-      const sticky = { title, text, color, font, isPublic, userId: auth.id };
+      const sticky = {
+        title,
+        text,
+        color,
+        font,
+        isPublic,
+        userId: auth.id,
+        emojiString,
+      };
       await dispatch(createSticky(sticky));
-      setTitle("");
-      setText("");
+      setTitle("title");
+      setEmojiString("");
+      setText("text");
       setColor("gold");
       setFont("verdana");
       setIsPublic(false);
@@ -49,11 +60,32 @@ const MyStickies = () => {
   return (
     <div>
       <h2>{auth.username}'s stickies</h2>
+      <Card
+        sx={{ maxWidth: 345 }}
+        variant="outlined"
+        style={{ backgroundColor: color, fontFamily: font }}
+      >
+        <CardContent>
+          {title}
+          {emojiString && emoji.get(emojiString)}
+          <hr />
+          <br />
+          {text}
+          <br />
+        </CardContent>
+      </Card>
       <form onSubmit={create}>
         <h3>create a new sticky</h3>
         <label>
           enter title
           <input value={title} onChange={(ev) => setTitle(ev.target.value)} />
+        </label>
+        <label>
+          add emoji to title
+          <input
+            value={emojiString}
+            onChange={(ev) => setEmojiString(ev.target.value)}
+          />
         </label>
         <label>
           enter text
@@ -100,6 +132,7 @@ const MyStickies = () => {
             >
               <CardContent>
                 <Link to={`/stickies/${sticky.id}`}>{sticky.title}</Link>
+                {!!sticky.emojiString && emoji.get(sticky.emojiString)}
                 <hr />
                 <br />
                 {sticky.text}

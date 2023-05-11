@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useParams } from "react-router-dom";
 import { updateSticky, destroySticky } from "../store";
+import emoji from "node-emoji";
 
 const StickyEdit = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -12,6 +13,7 @@ const StickyEdit = () => {
   const sticky = stickies.find((sticky) => sticky.id === id);
 
   const [title, setTitle] = useState("");
+  const [emojiString, setEmojiString] = useState("");
   const [text, setText] = useState("");
   const [color, setColor] = useState("gold");
   const [font, setFont] = useState("verdana");
@@ -20,8 +22,8 @@ const StickyEdit = () => {
   useEffect(() => {
     const sticky = stickies.find((sticky) => sticky.id === id);
     if (sticky) {
-      const sticky = stickies.find((sticky) => sticky.id === id);
       setTitle(sticky.title);
+      setEmojiString(sticky.emojiString);
       setText(sticky.text);
       setColor(sticky.color);
       setFont(sticky.font);
@@ -32,7 +34,7 @@ const StickyEdit = () => {
   const update = async (ev) => {
     ev.preventDefault();
     try {
-      const updated = { id, title, text, color, font, isPublic };
+      const updated = { id, title, text, color, font, isPublic, emojiString };
       await dispatch(updateSticky(updated));
     } catch (ex) {
       console.log(ex);
@@ -54,6 +56,13 @@ const StickyEdit = () => {
         <label>
           change title
           <input value={title} onChange={(ev) => setTitle(ev.target.value)} />
+        </label>
+        <label>
+          change or add title emoji
+          <input
+            value={emojiString || ""}
+            onChange={(ev) => setEmojiString(ev.target.value)}
+          />
         </label>
         <label>
           change text
@@ -98,6 +107,7 @@ const StickyEdit = () => {
       >
         <CardContent>
           {sticky.title}
+          {emojiString && emoji.get(emojiString)}
           <hr />
           <br />
           {sticky.text}
