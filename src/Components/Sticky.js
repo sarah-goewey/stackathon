@@ -18,7 +18,7 @@ const Sticky = ({
     <Card
       sx={{
         width: 345,
-        minHeight: 345,
+        height: 345,
         margin: "5px",
         position: "relative",
       }}

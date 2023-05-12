@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSticky, destroySticky } from "../store";
 import Sticky from "./Sticky";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
 
 const MyStickies = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -57,61 +62,72 @@ const MyStickies = () => {
   return (
     <div>
       <h2>{auth.username}'s stickies</h2>
-      <Sticky
-        title={title}
-        text={text}
-        emojiString={emojiString}
-        color={color}
-        font={font}
-        isPublic={isPublic}
-      />
-      <form onSubmit={create}>
-        <h3>create a new sticky</h3>
-        <label>
-          enter title
-          <input value={title} onChange={(ev) => setTitle(ev.target.value)} />
-        </label>
-        <label>
-          add emoji to title
-          <input
-            value={emojiString}
-            onChange={(ev) => setEmojiString(ev.target.value)}
-          />
-        </label>
-        <label>
-          enter text
-          <textarea value={text} onChange={(ev) => setText(ev.target.value)} />
-        </label>
-        <label>
-          select color
-          <select value={color} onChange={(ev) => setColor(ev.target.value)}>
-            <option value="gold">gold</option>
-            <option value="pink">pink</option>
-            <option value="dodgerBlue">blue</option>
-            <option value="seagreen">green</option>
-            <option value="mediumpurple">purple</option>
-            <option value="silver">silver</option>
-          </select>
-        </label>
-        <label>
-          select font
-          <select value={font} onChange={(ev) => setFont(ev.target.value)}>
-            <option value="verdana">verdana</option>
-            <option value="arial">arial</option>
-            <option value="times new roman">times new roman</option>
-            <option value="fantasy">fantasy</option>
-          </select>
-        </label>
-        <label>
-          public?
-          <input
-            type="checkbox"
-            value={isPublic}
-            onClick={(ev) => setIsPublic(!isPublic)}
-          />
-        </label>
-        <button>create sticky</button>
-      </form>
+      <div className="stickyAndForm">
+        <form>
+          <h3>create a new sticky</h3>
+          <label>
+            enter title
+            <TextField
+              value={title}
+              onChange={(ev) => setTitle(ev.target.value)}
+            />
+          </label>
+          <label>
+            add emoji to title
+            <TextField
+              value={emojiString}
+              onChange={(ev) => setEmojiString(ev.target.value)}
+            />
+          </label>
+          <label>
+            enter text
+            <TextField
+              multiline
+              value={text}
+              onChange={(ev) => setText(ev.target.value)}
+            />
+          </label>
+          <label>
+            select color
+            <Select value={color} onChange={(ev) => setColor(ev.target.value)}>
+              <MenuItem value="gold">gold</MenuItem>
+              <MenuItem value="pink">pink</MenuItem>
+              <MenuItem value="dodgerBlue">blue</MenuItem>
+              <MenuItem value="seagreen">green</MenuItem>
+              <MenuItem value="mediumpurple">purple</MenuItem>
+              <MenuItem value="silver">silver</MenuItem>
+            </Select>
+          </label>
+          <label>
+            select font
+            <Select value={font} onChange={(ev) => setFont(ev.target.value)}>
+              <MenuItem value="verdana">verdana</MenuItem>
+              <MenuItem value="arial">arial</MenuItem>
+              <MenuItem value="times new roman">times new roman</MenuItem>
+              <MenuItem value="fantasy">fantasy</MenuItem>
+            </Select>
+          </label>
+          <label>
+            public?
+            <Checkbox
+              color="secondary"
+              value={isPublic}
+              onClick={(ev) => setIsPublic(!isPublic)}
+            />
+          </label>
+          <Button onClick={create} color="secondary">
+            create
+          </Button>
+        </form>
+        <Sticky
+          title={title}
+          text={text}
+          emojiString={emojiString}
+          color={color}
+          font={font}
+          isPublic={isPublic}
+        />
+      </div>
       <ul className="myStickies">
         {myStickies.map((sticky, idx) => {
           return (
@@ -126,7 +142,9 @@ const MyStickies = () => {
                 isPublic={sticky.isPublic}
                 wantLink={true}
               />
-              <button onClick={() => destroy(sticky)}>x</button>
+              <Button color="secondary" onClick={() => destroy(sticky)}>
+                x
+              </Button>
             </div>
           );
         })}

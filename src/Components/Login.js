@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { attemptLogin } from "../store";
+import { attemptLogin, createUser } from "../store";
 import { useDispatch } from "react-redux";
 import Feed from "./Feed";
 import Button from "@mui/material/Button";
@@ -20,6 +20,13 @@ const Login = () => {
     ev.preventDefault();
     dispatch(attemptLogin(credentials));
   };
+
+  const register = (ev) => {
+    console.log("register");
+    //ev.preventDefault();
+    //dispatch(register(credentials));
+  };
+
   return (
     <div>
       <form onSubmit={login}>
@@ -36,9 +43,14 @@ const Login = () => {
           value={credentials.password}
           onChange={onChange}
         />
-        <Button color="secondary" onClick={login}>
-          login
-        </Button>
+        <div className="buttons">
+          <Button color="secondary" onClick={login}>
+            login
+          </Button>
+          <Button color="secondary" onClick={register}>
+            register
+          </Button>
+        </div>
       </form>
       <Feed />
     </div>

@@ -1,47 +1,46 @@
 body {
-  font-family: monospace;
+  font-family: sans-serif;
+  background-color: lavender;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 form > * {
   width: 50%;
+  margin: 1rem;
 }
 
 form > h2,
 form > h3 {
-  text-align: right;
+  text-align: left;
 }
 
 Button {
   width: 6rem;
 }
 
-form > * {
-  margin: 1rem;
-}
-
 h1 {
   font-size: 3rem;
+}
+
+h1,
+h2 {
+  text-align: center;
 }
 
 .nav {
   display: flex;
   justify-content: space-around;
-  background-color: black;
+  background-color: blueviolet;
 }
 
 .nav > a {
   color: white;
   font-size: 1.25rem;
-}
-
-.button {
-  background-color: red;
 }
 
 ul.stickyFeed {
@@ -58,9 +57,24 @@ ul.myStickies {
 
 .stickyAndButton {
   display: flex;
+  max-width: 500;
 }
 
-.stickyAndButton > button {
-  width: 25px;
+.stickyAndButton > Button {
+  width: 7px;
   height: 25px;
+}
+
+.stickyAndForm {
+  display: flex;
+  align-items: center;
+}
+
+.stickyAndForm > form {
+  width: 60%;
+  padding: 0;
+}
+
+.buttons {
+  display: flex;
 }

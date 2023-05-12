@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateSticky, destroySticky } from "../store";
 import Sticky from "./Sticky";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Checkbox from "@mui/material/Checkbox";
 
 const StickyEdit = () => {
   const { auth, stickies } = useSelector((state) => state);
@@ -59,67 +64,80 @@ const StickyEdit = () => {
   }
 
   return (
-    <div>
+    <div className="stickyAndForm">
       <form>
-        <h2>edit sticky</h2>
+        <h3>edit sticky</h3>
         <label>
           change title
-          <input value={title} onChange={(ev) => setTitle(ev.target.value)} />
+          <TextField
+            value={title}
+            onChange={(ev) => setTitle(ev.target.value)}
+          />
         </label>
         <label>
-          change or add title emoji
-          <input
+          change emoji
+          <TextField
             value={emojiString || ""}
             onChange={(ev) => setEmojiString(ev.target.value)}
           />
         </label>
         <label>
           change text
-          <textarea value={text} onChange={(ev) => setText(ev.target.value)} />
+          <TextField
+            multiline
+            value={text}
+            onChange={(ev) => setText(ev.target.value)}
+          />
         </label>
         <label>
           change color
-          <select value={color} onChange={(ev) => setColor(ev.target.value)}>
-            <option value="gold">gold</option>
-            <option value="pink">pink</option>
-            <option value="dodgerBlue">blue</option>
-            <option value="seagreen">green</option>
-            <option value="mediumpurple">purple</option>
-            <option value="silver">silver</option>
-          </select>
+          <Select value={color} onChange={(ev) => setColor(ev.target.value)}>
+            <MenuItem value="gold">gold</MenuItem>
+            <MenuItem value="pink">pink</MenuItem>
+            <MenuItem value="dodgerBlue">blue</MenuItem>
+            <MenuItem value="seagreen">green</MenuItem>
+            <MenuItem value="mediumpurple">purple</MenuItem>
+            <MenuItem value="silver">silver</MenuItem>
+          </Select>
         </label>
         <label>
           change font
-          <select value={font} onChange={(ev) => setFont(ev.target.value)}>
-            <option value="verdana">verdana</option>
-            <option value="arial">arial</option>
-            <option value="times new roman">times new roman</option>
-            <option value="fantasy">fantasy</option>
-          </select>
+          <Select value={font} onChange={(ev) => setFont(ev.target.value)}>
+            <MenuItem value="verdana">verdana</MenuItem>
+            <MenuItem value="arial">arial</MenuItem>
+            <MenuItem value="times new roman">times new roman</MenuItem>
+            <MenuItem value="fantasy">fantasy</MenuItem>
+          </Select>
         </label>
         <label>
           public?
-          <input
-            type="checkbox"
+          <Checkbox
+            color="secondary"
             value={isPublic}
             checked={!!isPublic ? true : false}
             onChange={(ev) => setIsPublic(!isPublic)}
           />
         </label>
-        <button onClick={update}>update sticky</button>
-        <button onClick={reset}>reset</button>
+        <div className="buttons">
+          <Button onClick={update} color="secondary">
+            update
+          </Button>
+          <Button onClick={reset} color="secondary">
+            reset
+          </Button>
+          <Button onClick={() => destroy(sticky)} color="secondary">
+            delete
+          </Button>
+        </div>
       </form>
-      <div className="stickyAndButton">
-        <Sticky
-          title={title}
-          text={text}
-          emojiString={emojiString}
-          color={color}
-          font={font}
-          isPublic={isPublic}
-        />
-        <button onClick={() => destroy(sticky)}>x</button>
-      </div>
+      <Sticky
+        title={title}
+        text={text}
+        emojiString={emojiString}
+        color={color}
+        font={font}
+        isPublic={isPublic}
+      />
     </div>
   );
 };
