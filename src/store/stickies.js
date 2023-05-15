@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const stickies = (state = [], action) => {
-  if (action.type === "SET_ALL_STICKIES") {
+  if (action.type === "SET_STICKIES") {
     return action.stickies;
   }
   if (action.type === "ADD_STICKY") {
@@ -24,7 +24,7 @@ const stickies = (state = [], action) => {
 export const fetchStickies = () => {
   return async (dispatch) => {
     const response = await axios.get("api/stickies/");
-    dispatch({ type: "SET_ALL_STICKIES", stickies: response.data });
+    dispatch({ type: "SET_STICKIES", stickies: response.data });
   };
 };
 

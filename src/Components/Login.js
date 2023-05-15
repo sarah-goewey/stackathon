@@ -31,12 +31,15 @@ const Login = () => {
       <form onSubmit={login}>
         <h2>login or register</h2>
         <TextField
+          autoComplete="username"
           placeholder="username"
           value={credentials.username}
           name="username"
           onChange={onChange}
         />
         <TextField
+          type="password"
+          autoComplete="current-password"
           placeholder="password"
           name="password"
           value={credentials.password}

@@ -45,9 +45,13 @@ export const updateAuth = (auth) => {
 
 export const attemptLogin = (credentials) => {
   return async (dispatch) => {
-    const response = await axios.post("/api/auth", credentials);
-    window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
+    try {
+      const response = await axios.post("/api/auth", credentials);
+      window.localStorage.setItem("token", response.data);
+      dispatch(loginWithToken());
+    } catch (ex) {
+      alert("login failed, try again");
+    }
   };
 };
 
