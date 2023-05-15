@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Box from "@mui/material/Box";
 
 const StickyEdit = () => {
   const { stickies } = useSelector((state) => state);
@@ -40,6 +41,7 @@ const StickyEdit = () => {
     try {
       const updated = { id, title, text, color, font, isPublic, emojiString };
       await dispatch(updateSticky(updated));
+      navigate("/mystickies");
     } catch (ex) {
       console.log(ex);
     }
@@ -65,11 +67,12 @@ const StickyEdit = () => {
 
   return (
     <div className="stickyAndForm">
-      <form>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <h3>edit sticky</h3>
         <label>
           change title
           <TextField
+            sx={{ margin: "10px" }}
             value={title}
             onChange={(ev) => setTitle(ev.target.value)}
           />
@@ -77,6 +80,7 @@ const StickyEdit = () => {
         <label>
           change emoji
           <TextField
+            sx={{ margin: "10px" }}
             value={emojiString || ""}
             onChange={(ev) => setEmojiString(ev.target.value)}
           />
@@ -84,6 +88,7 @@ const StickyEdit = () => {
         <label>
           change text
           <TextField
+            sx={{ margin: "10px" }}
             multiline
             value={text}
             onChange={(ev) => setText(ev.target.value)}
@@ -91,7 +96,11 @@ const StickyEdit = () => {
         </label>
         <label>
           change color
-          <Select value={color} onChange={(ev) => setColor(ev.target.value)}>
+          <Select
+            value={color}
+            onChange={(ev) => setColor(ev.target.value)}
+            sx={{ margin: "10px" }}
+          >
             <MenuItem value="gold">gold</MenuItem>
             <MenuItem value="pink">pink</MenuItem>
             <MenuItem value="dodgerBlue">blue</MenuItem>
@@ -102,7 +111,11 @@ const StickyEdit = () => {
         </label>
         <label>
           change font
-          <Select value={font} onChange={(ev) => setFont(ev.target.value)}>
+          <Select
+            value={font}
+            onChange={(ev) => setFont(ev.target.value)}
+            sx={{ margin: "10px" }}
+          >
             <MenuItem value="verdana">verdana</MenuItem>
             <MenuItem value="arial">arial</MenuItem>
             <MenuItem value="times new roman">times new roman</MenuItem>
@@ -129,7 +142,7 @@ const StickyEdit = () => {
             delete
           </Button>
         </div>
-      </form>
+      </Box>
       <Sticky
         title={title}
         text={text}

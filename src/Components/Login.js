@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import Feed from "./Feed";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={login}>
+      <form>
         <h2>login or register</h2>
         <TextField
           autoComplete="username"

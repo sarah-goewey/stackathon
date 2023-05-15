@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
+import Box from "@mui/material/Box";
 import Sticky from "./Sticky";
 
 const CreateSticky = () => {
@@ -52,11 +53,12 @@ const CreateSticky = () => {
   return (
     <div>
       <div className="stickyAndForm">
-        <form>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
           <h3>create a new sticky</h3>
           <label>
             enter title
             <TextField
+              sx={{ margin: "10px" }}
               value={title}
               onChange={(ev) => setTitle(ev.target.value)}
             />
@@ -64,6 +66,7 @@ const CreateSticky = () => {
           <label>
             add emoji to title
             <TextField
+              sx={{ margin: "10px" }}
               value={emojiString}
               onChange={(ev) => setEmojiString(ev.target.value)}
             />
@@ -71,6 +74,7 @@ const CreateSticky = () => {
           <label>
             enter text
             <TextField
+              sx={{ margin: "10px" }}
               multiline
               value={text}
               onChange={(ev) => setText(ev.target.value)}
@@ -78,7 +82,11 @@ const CreateSticky = () => {
           </label>
           <label>
             select color
-            <Select value={color} onChange={(ev) => setColor(ev.target.value)}>
+            <Select
+              value={color}
+              onChange={(ev) => setColor(ev.target.value)}
+              sx={{ margin: "10px" }}
+            >
               <MenuItem value="gold">gold</MenuItem>
               <MenuItem value="pink">pink</MenuItem>
               <MenuItem value="dodgerBlue">blue</MenuItem>
@@ -89,7 +97,11 @@ const CreateSticky = () => {
           </label>
           <label>
             select font
-            <Select value={font} onChange={(ev) => setFont(ev.target.value)}>
+            <Select
+              value={font}
+              onChange={(ev) => setFont(ev.target.value)}
+              sx={{ margin: "10px" }}
+            >
               <MenuItem value="verdana">verdana</MenuItem>
               <MenuItem value="arial">arial</MenuItem>
               <MenuItem value="times new roman">times new roman</MenuItem>
@@ -112,7 +124,7 @@ const CreateSticky = () => {
               reset
             </Button>
           </div>
-        </form>
+        </Box>
         <Sticky
           title={title}
           text={text}
