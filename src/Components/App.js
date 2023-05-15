@@ -4,6 +4,7 @@ import Login from "./Login";
 import MyStickies from "./MyStickies";
 import Profile from "./Profile";
 import StickyEdit from "./Stickyedit";
+import CreateSticky from "./CreateSticky";
 import { useSelector, useDispatch } from "react-redux";
 import { loginWithToken, fetchStickies } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="/mystickies" element={<MyStickies />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/stickies/:id" element={<StickyEdit />} />
+            <Route path="/createsticky" element={<CreateSticky />} />
           </Routes>
         </div>
       )}

@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 
 const StickyEdit = () => {
-  const { auth, stickies } = useSelector((state) => state);
+  const { stickies } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
