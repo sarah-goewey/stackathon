@@ -23,45 +23,104 @@ const syncAndSeed = async () => {
     return titles;
   };
 
-  await Promise.all([
+  const colors = [
+    "gold",
+    "pink",
+    "dodgerBlue",
+    "seagreen",
+    "mediumpurple",
+    "silver",
+    "orange",
+    "indianRed",
+    "teal",
+  ];
+
+  const fonts = ["verdana", "arial", "times new roman", "fantasy", "monospace"];
+
+  const moesStickies = await Promise.all(
     titles().map((title) => {
-      Sticky.create({
+      const sticky = Sticky.create({
         title,
         text: faker.lorem.paragraph(3),
         isPublic: true,
         userId: moe.id,
-        color: "seagreen",
         emojiString: "pizza",
       });
-    }),
+      return sticky;
+    })
+  );
+
+  const lucysStickies = await Promise.all(
     titles().map((title) => {
-      Sticky.create({
+      const sticky = Sticky.create({
         title,
         text: faker.lorem.paragraph(3),
         isPublic: true,
         userId: lucy.id,
-        font: "fantasy",
+        emojiString: "heart",
       });
-    }),
+      return sticky;
+    })
+  );
+
+  const larrysStickies = await Promise.all(
     titles().map((title) => {
-      Sticky.create({
+      const sticky = Sticky.create({
         title,
         text: faker.lorem.paragraph(3),
         isPublic: true,
         userId: larry.id,
-        color: "pink",
-        font: "arial",
+        emojiString: "candy",
       });
-    }),
+      return sticky;
+    })
+  );
+
+  const ethylsStickies = await Promise.all(
     titles().map((title) => {
-      Sticky.create({
+      const sticky = Sticky.create({
         title,
         text: faker.lorem.paragraph(3),
         isPublic: true,
         userId: ethyl.id,
-        color: "dodgerBlue",
-        font: "times new roman",
+        emojiString: "rainbow",
       });
+      return sticky;
+    })
+  );
+
+  await Promise.all([
+    moesStickies.map((sticky, i) => {
+      if (!!colors[i] && !!fonts[i]) {
+        sticky.update({ color: colors[i], font: fonts[i] });
+      }
+      if (!!colors[i]) {
+        sticky.update({ color: colors[i] });
+      }
+    }),
+    lucysStickies.map((sticky, i) => {
+      if (!!colors[i] && !!fonts[i]) {
+        sticky.update({ color: colors[i], font: fonts[i] });
+      }
+      if (!!colors[i]) {
+        sticky.update({ color: colors[i] });
+      }
+    }),
+    larrysStickies.map((sticky, i) => {
+      if (!!colors[i] && !!fonts[i]) {
+        sticky.update({ color: colors[i], font: fonts[i] });
+      }
+      if (!!colors[i]) {
+        sticky.update({ color: colors[i] });
+      }
+    }),
+    ethylsStickies.map((sticky, i) => {
+      if (!!colors[i] && !!fonts[i]) {
+        sticky.update({ color: colors[i], font: fonts[i] });
+      }
+      if (!!colors[i]) {
+        sticky.update({ color: colors[i] });
+      }
     }),
   ]);
 
