@@ -33,6 +33,7 @@ const Sticky = ({
           {title}
           {!!emojiString && emoji.get(emojiString)}
         </p>
+        <p style={{ fontSize: "0.75rem" }}>by</p>
         <hr />
         <br />
         <p>{text}</p>

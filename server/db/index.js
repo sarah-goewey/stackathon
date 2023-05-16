@@ -41,7 +41,7 @@ const syncAndSeed = async () => {
     titles().map((title) => {
       const sticky = Sticky.create({
         title,
-        text: faker.lorem.paragraph(3),
+        text: faker.lorem.paragraph(2),
         isPublic: true,
         userId: moe.id,
         emojiString: "pizza",
@@ -54,7 +54,7 @@ const syncAndSeed = async () => {
     titles().map((title) => {
       const sticky = Sticky.create({
         title,
-        text: faker.lorem.paragraph(3),
+        text: faker.lorem.paragraph(2),
         isPublic: true,
         userId: lucy.id,
         emojiString: "heart",
@@ -67,7 +67,7 @@ const syncAndSeed = async () => {
     titles().map((title) => {
       const sticky = Sticky.create({
         title,
-        text: faker.lorem.paragraph(3),
+        text: faker.lorem.paragraph(2),
         isPublic: true,
         userId: larry.id,
         emojiString: "candy",
@@ -80,7 +80,7 @@ const syncAndSeed = async () => {
     titles().map((title) => {
       const sticky = Sticky.create({
         title,
-        text: faker.lorem.paragraph(3),
+        text: faker.lorem.paragraph(2),
         isPublic: true,
         userId: ethyl.id,
         emojiString: "rainbow",
