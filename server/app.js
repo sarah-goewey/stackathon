@@ -14,5 +14,6 @@ app.get("/", (req, res) =>
 
 app.use("/api/auth", require("./api/auth"));
 app.use("/api/stickies", require("./api/stickies"));
+app.use("/api/users", require("./api/users"));
 
 module.exports = app;

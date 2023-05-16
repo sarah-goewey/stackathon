@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import emoji from "node-emoji";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Sticky = ({
   id,
@@ -13,7 +14,18 @@ const Sticky = ({
   font,
   isPublic,
   wantLink,
+  userId,
 }) => {
+  const { users } = useSelector((state) => state);
+  const user = users.find((user) => user.id === userId);
+
+  useEffect(() => {
+    const user = users.find((user) => user.id === userId);
+    if (user) {
+      username = user.username;
+    }
+  }, [users]);
+
   return (
     <Card
       sx={{
@@ -33,7 +45,7 @@ const Sticky = ({
           {title}
           {!!emojiString && emoji.get(emojiString)}
         </p>
-        <p style={{ fontSize: "0.75rem" }}>by</p>
+        <p style={{ fontSize: "0.75rem" }}>by USERNAME HERE</p>
         <hr />
         <br />
         <p>{text}</p>

@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import StickyEdit from "./Stickyedit";
 import CreateSticky from "./CreateSticky";
 import { useSelector, useDispatch } from "react-redux";
-import { loginWithToken, fetchStickies } from "../store";
+import { loginWithToken, fetchStickies, fetchUsers } from "../store";
 import { Link, Routes, Route } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -19,6 +19,7 @@ const App = () => {
   useEffect(() => {
     dispatch(loginWithToken());
     dispatch(fetchStickies());
+    dispatch(fetchUsers());
   }, []);
 
   useEffect(() => {
