@@ -26,13 +26,16 @@ const Sticky = conn.define("sticky", {
       "dodgerBlue",
       "seagreen",
       "mediumpurple",
-      "silver"
+      "silver",
+      "orange",
+      "indianRed",
+      "teal"
     ),
     allowNull: false,
     defaultValue: "gold",
   },
   font: {
-    type: ENUM("verdana", "arial", "times new roman", "fantasy"),
+    type: ENUM("verdana", "arial", "times new roman", "fantasy", "monospace"),
     allowNull: false,
     defaultValue: "verdana",
   },

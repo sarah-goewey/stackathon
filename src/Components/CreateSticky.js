@@ -53,7 +53,12 @@ const CreateSticky = () => {
   return (
     <div>
       <div className="stickyAndForm">
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <h3>create a new sticky</h3>
           <label>
             enter title
@@ -87,11 +92,14 @@ const CreateSticky = () => {
               onChange={(ev) => setColor(ev.target.value)}
               sx={{ margin: "10px" }}
             >
+              <MenuItem value="indianRed">red</MenuItem>
+              <MenuItem value="orange">orange</MenuItem>
               <MenuItem value="gold">gold</MenuItem>
-              <MenuItem value="pink">pink</MenuItem>
-              <MenuItem value="dodgerBlue">blue</MenuItem>
               <MenuItem value="seagreen">green</MenuItem>
+              <MenuItem value="teal">teal</MenuItem>
+              <MenuItem value="dodgerBlue">blue</MenuItem>
               <MenuItem value="mediumpurple">purple</MenuItem>
+              <MenuItem value="pink">pink</MenuItem>
               <MenuItem value="silver">silver</MenuItem>
             </Select>
           </label>
@@ -106,6 +114,7 @@ const CreateSticky = () => {
               <MenuItem value="arial">arial</MenuItem>
               <MenuItem value="times new roman">times new roman</MenuItem>
               <MenuItem value="fantasy">fantasy</MenuItem>
+              <MenuItem value="monospace">monospace</MenuItem>
             </Select>
           </label>
           <label>
