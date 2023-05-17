@@ -11,7 +11,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 
 const StickyEdit = () => {
-  const { stickies } = useSelector((state) => state);
+  const { stickies, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -154,6 +154,7 @@ const StickyEdit = () => {
         color={color}
         font={font}
         isPublic={isPublic}
+        userId={auth.id}
       />
     </div>
   );

@@ -31,6 +31,7 @@ const Feed = () => {
             color={sticky.color}
             font={sticky.font}
             isPublic={sticky.isPublic}
+            userId={sticky.userId}
           />
         );
       })}

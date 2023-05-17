@@ -141,6 +141,7 @@ const CreateSticky = () => {
           color={color}
           font={font}
           isPublic={isPublic}
+          userId={auth.id}
         />
       </div>
     </div>

@@ -42,6 +42,7 @@ const MyStickies = () => {
                 font={sticky.font}
                 isPublic={sticky.isPublic}
                 wantLink={true}
+                userId={sticky.userId}
               />
               <Button color="secondary" onClick={() => destroy(sticky)}>
                 x

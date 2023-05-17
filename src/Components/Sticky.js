@@ -19,12 +19,9 @@ const Sticky = ({
   const { users } = useSelector((state) => state);
   const user = users.find((user) => user.id === userId);
 
-  useEffect(() => {
-    const user = users.find((user) => user.id === userId);
-    if (user) {
-      username = user.username;
-    }
-  }, [users]);
+  if (!user) {
+    return null;
+  }
 
   return (
     <Card
@@ -45,7 +42,7 @@ const Sticky = ({
           {title}
           {!!emojiString && emoji.get(emojiString)}
         </p>
-        <p style={{ fontSize: "0.75rem" }}>by USERNAME HERE</p>
+        <p style={{ fontSize: "0.75rem" }}>by {user.username || "anonymous"}</p>
         <hr />
         <br />
         <p>{text}</p>
