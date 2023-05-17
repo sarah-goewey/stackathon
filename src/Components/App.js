@@ -12,7 +12,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 
 const App = () => {
-  const { auth, stickies } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const prevAuth = useRef(auth);
 

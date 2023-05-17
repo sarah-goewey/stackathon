@@ -50,6 +50,10 @@ const CreateSticky = () => {
     setIsPublic(false);
   };
 
+  if (!auth) {
+    return null;
+  }
+
   return (
     <div>
       <div className="stickyAndForm">

@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Sticky from "./Sticky";
 
 const Feed = () => {
   const { stickies } = useSelector((state) => state);
-  const dispatch = useDispatch();
 
   const feed = stickies
     .filter((sticky) => !!sticky.isPublic)

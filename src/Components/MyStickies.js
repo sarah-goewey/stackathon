@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createSticky, destroySticky } from "../store";
+import { destroySticky } from "../store";
 import Sticky from "./Sticky";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";

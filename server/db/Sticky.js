@@ -1,8 +1,5 @@
 const conn = require("./conn");
 const { STRING, UUID, UUIDV4, TEXT, BOOLEAN, ENUM } = conn.Sequelize;
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const JWT = process.env.JWT;
 const emoji = require("node-emoji");
 
 const Sticky = conn.define("sticky", {

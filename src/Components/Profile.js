@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout, updateAuth } from "../store";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Checkbox from "@mui/material/Checkbox";
 
 const Profile = () => {
   const { auth } = useSelector((state) => state);
@@ -28,10 +25,6 @@ const Profile = () => {
     } catch (ex) {
       console.log(ex);
     }
-  };
-
-  const _logout = () => {
-    dispatch(logout());
   };
 
   return (
@@ -59,7 +52,7 @@ const Profile = () => {
           <Button color="secondary" onClick={update}>
             update
           </Button>
-          <Button color="secondary" onClick={_logout}>
+          <Button color="secondary" onClick={() => dispatch(logout())}>
             logout
           </Button>
         </div>
