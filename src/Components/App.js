@@ -23,6 +23,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    dispatch(fetchUsers());
     if (!prevAuth.current.id && auth.id) {
       console.log("logged in");
     }
