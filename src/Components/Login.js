@@ -26,6 +26,11 @@ const Login = () => {
     dispatch(register(credentials));
   };
 
+  const bypassLogin = (ev) => {
+    ev.preventDefault();
+    dispatch(attemptLogin({ username: "moe", password: "123" }));
+  };
+
   return (
     <div>
       <form>
@@ -51,6 +56,9 @@ const Login = () => {
           </Button>
           <Button color="secondary" onClick={_register}>
             register
+          </Button>
+          <Button color="warning" onClick={bypassLogin}>
+            bypass login for demo
           </Button>
         </div>
       </form>
